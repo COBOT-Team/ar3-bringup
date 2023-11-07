@@ -10,6 +10,7 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <exec_depend>ar3_moveit_config</exec_depend>
+  <exec_depend>joy</exec_depend>
 
   <!-- Required to launch MoveIt -->
 
