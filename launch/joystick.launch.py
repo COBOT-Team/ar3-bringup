@@ -1,13 +1,10 @@
 from launch import LaunchDescription
 from launch.substitutions import TextSubstitution, LaunchConfiguration
 from launch.actions import DeclareLaunchArgument
-from launch.actions import GroupAction
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 from launch_ros.actions import Node
-from launch_ros.actions import PushRosNamespace
 from moveit_configs_utils import MoveItConfigsBuilder
-from moveit_configs_utils.launches import generate_demo_launch
 from ament_index_python import get_package_share_directory
 import os
 import yaml
@@ -16,6 +13,7 @@ import yaml
 def load_yaml(package_name, file_path):
     package_path = get_package_share_directory(package_name)
     absolute_file_path = os.path.join(package_path, file_path)
+    print(absolute_file_path)
 
     try:
         with open(absolute_file_path, "r") as file:
@@ -46,6 +44,30 @@ def generate_launch_description():
                 "ar3.urdf.xacro",
             ),
             mappings={"serial_port": serial_port, "baud_rate": baudrate},
+        ).joint_limits(
+            file_path=os.path.join(
+                get_package_share_directory("ar3_moveit_config"),
+                "config",
+                "joint_limits.yaml",
+            ),
+        ).pilz_cartesian_limits(
+            file_path=os.path.join(
+                get_package_share_directory("ar3_moveit_config"),
+                "config",
+                "pilz_cartesian_limits.yaml",
+            ),
+        ).robot_description_kinematics(
+            file_path=os.path.join(
+                get_package_share_directory("ar3_moveit_config"),
+                "config",
+                "kinematics.yaml",
+            ),
+        ).robot_description_semantic(
+            file_path=os.path.join(
+                get_package_share_directory("ar3_moveit_config"),
+                "config",
+                "ar3.srdf",
+            ),
         )
     ).to_moveit_configs()
 
@@ -107,16 +129,16 @@ def generate_launch_description():
         package="rclcpp_components",
         executable="component_container_mt",
         composable_node_descriptions=[
-            ComposableNode(
-                package="moveit_servo",
-                plugin="moveit_servo::ServoServer",
-                name="servo_server",
-                parameters=[
-                    servo_params,
-                    moveit_config.robot_description,
-                    moveit_config.robot_description_semantic,
-                ],
-            ),
+            # ComposableNode(
+            #     package="moveit_servo",
+            #     plugin="moveit_servo::ServoServer",
+            #     name="servo_server",
+            #     parameters=[
+            #         servo_params,
+            #         moveit_config.robot_description,
+            #         moveit_config.robot_description_semantic,
+            #     ],
+            # ),
             ComposableNode(
                 package="robot_state_publisher",
                 plugin="robot_state_publisher::RobotStatePublisher",
@@ -127,7 +149,9 @@ def generate_launch_description():
                 package="tf2_ros",
                 plugin="tf2_ros::StaticTransformBroadcasterNode",
                 name="static_tf2_broadcaster",
-                parameters=[{"child_frame_id": "/ar3_world_joint", "frame_id": "/world"}],
+                parameters=[
+                    {"child_frame_id": "/ar3_world_joint", "frame_id": "/world"}
+                ],
             ),
             ComposableNode(
                 package="moveit_servo",
@@ -142,3 +166,38 @@ def generate_launch_description():
         ],
         output="screen",
     )
+
+    for f in [
+            servo_params,
+            moveit_config.robot_description,
+            moveit_config.robot_description_semantic,
+            moveit_config.robot_description_kinematics,
+        ]:
+        print()
+        print(f)
+        print()
+
+    servo_node = Node(
+        package="joystick_servo",
+        executable="joystick_servo",
+        parameters=[
+            servo_params,
+            moveit_config.robot_description,
+            moveit_config.robot_description_semantic,
+            moveit_config.robot_description_kinematics,
+        ],
+        # arguments=['--ros-args', '--log-level', 'debug'],
+        output="screen",
+    )
+
+    return LaunchDescription([
+        serial_port_launch_arg,
+        baudrate_launch_arg,
+
+        # rviz_node,
+        # ros2_control_node,
+        # joint_state_broadcaster_spawner,
+        # ar3_arm_controller_spawner,
+        servo_node,
+        # container,
+    ])
