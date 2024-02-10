@@ -30,7 +30,7 @@ def generate_launch_description():
             file_path=os.path.join(
                 get_package_share_directory('ar3_moveit_config'),
                 'config',
-                'ar3.urdf.xacro'
+                'two_cobots.urdf.xacro'
             ),
             mappings={
                 "serial_port": serial_port,
