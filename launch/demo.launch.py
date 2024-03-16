@@ -41,7 +41,7 @@ def generate_launch_description():
     static_tf_chessboard = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
-        name="chessboard_transform_pub",
+        name="aruco_transforms_pub",
         output="log",
         arguments=['--x', "0.3556",
                    '--y', "0",
@@ -72,10 +72,10 @@ def generate_launch_description():
         name='kinect2ros'
     )
 
-    chessboard_transform = Node(
-        package='chessboard_transform',
-        executable='chessboard_transform',
-        name='chessboard_transform'
+    aruco_transforms = Node(
+        package='aruco_transforms',
+        executable='aruco_transforms',
+        name='aruco_transforms'
     )
 
     tof_piece_finder = Node(
@@ -109,7 +109,7 @@ def generate_launch_description():
         robot_state,
         static_tf,
         kinect2ros,
-        chessboard_transform,
+        aruco_transforms,
         tof_piece_finder,
         rviz,
     ])
