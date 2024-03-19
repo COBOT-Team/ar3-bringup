@@ -41,7 +41,7 @@ def generate_launch_description():
     static_tf_chessboard = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
-        name="aruco_transforms_pub",
+        name="chessboard_transforms_pub",
         output="log",
         arguments=['--x', "0.3556",
                    '--y', "0",
