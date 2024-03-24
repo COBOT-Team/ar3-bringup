@@ -3,11 +3,9 @@ Panels:
     Help Height: 70
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /MotionPlanning1
-        - /Image3
-      Splitter Ratio: 0.5
-    Tree Height: 115
+      Expanded: ~
+      Splitter Ratio: 0.3862660825252533
+    Tree Height: 795
   - Class: rviz_common/Help
     Name: Help
   - Class: rviz_common/Views
@@ -214,42 +212,6 @@ Visualization Manager:
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 0.1
-    - Class: rviz_default_plugins/TF
-      Enabled: true
-      Frame Timeout: 15
-      Frames:
-        All Enabled: true
-        base_link:
-          Value: true
-        chessboard_frame:
-          Value: true
-        cobot0_base:
-          Value: true
-        cobot0_link_5:
-          Value: true
-        cobot0_link_gripper:
-          Value: true
-        kinect2_color_optical_frame:
-          Value: true
-        kinect2_depth_optical_frame:
-          Value: true
-        world:
-          Value: true
-      Marker Scale: 1
-      Name: TF
-      Show Arrows: true
-      Show Axes: true
-      Show Names: false
-      Tree:
-        world:
-          base_link:
-            cobot0_base:
-              chessboard_frame:
-                kinect2_color_optical_frame:
-                  kinect2_depth_optical_frame:
-                    {}
-      Update Interval: 0
-      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -268,7 +230,7 @@ Visualization Manager:
       Max Intensity: 4096
       Min Color: 0; 0; 0
       Min Intensity: 0
-      Name: PointCloud2
+      Name: Kinect Pointcloud
       Position Transformer: XYZ
       Selectable: true
       Size (Pixels): 3
@@ -284,12 +246,38 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Class: rviz_default_plugins/Camera
+      Enabled: true
+      Far Plane Distance: 100
+      Image Rendering: background and overlay
+      Name: Kinect
+      Overlay Alpha: 0.5
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /kinect2/color/image_raw
+      Value: true
+      Visibility:
+        Axes: true
+        Chessboard: true
+        Chessboard Location: true
+        Cobot0 Location: true
+        Grid: true
+        Kinect Pointcloud: false
+        Kinect Raw: true
+        MotionPlanning: true
+        TOF: true
+        Table: true
+        Value: true
+      Zoom Factor: 1
     - Class: rviz_default_plugins/Image
       Enabled: true
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: Image
+      Name: Chessboard
       Normalize Range: true
       Topic:
         Depth: 5
@@ -299,25 +287,25 @@ Visualization Manager:
         Value: /chessboard/image_raw
       Value: true
     - Class: rviz_default_plugins/Image
-      Enabled: true
+      Enabled: false
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: Image
+      Name: Table
       Normalize Range: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /kinect2/color/image_raw
-      Value: true
+        Value: /table/image_raw
+      Value: false
     - Class: rviz_default_plugins/Image
-      Enabled: true
+      Enabled: false
       Max Value: 1
       Median window: 5
       Min Value: 0
-      Name: Image
+      Name: TOF
       Normalize Range: true
       Topic:
         Depth: 5
@@ -325,6 +313,41 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /tof/pieces/annotated/image_raw
+      Value: false
+    - Class: rviz_default_plugins/Image
+      Enabled: false
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Kinect Raw
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /kinect2/color/image_raw
+      Value: false
+    - Class: rviz_default_plugins/Axes
+      Enabled: true
+      Length: 0.20000000298023224
+      Name: Cobot0 Location
+      Radius: 0.019999999552965164
+      Reference Frame: cobot0_base
+      Value: true
+    - Class: rviz_default_plugins/Axes
+      Enabled: true
+      Length: 0.10000000149011612
+      Name: Chessboard Location
+      Radius: 0.009999999776482582
+      Reference Frame: chessboard_frame
+      Value: true
+    - Class: rviz_default_plugins/Axes
+      Enabled: true
+      Length: 0.10000000149011612
+      Name: Axes
+      Radius: 0.009999999776482582
+      Reference Frame: table_frame
       Value: true
   Enabled: true
   Global Options:
@@ -344,41 +367,49 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.652132987976074
+      Distance: 2.539202928543091
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.312188982963562
-        Y: 0.3953714668750763
-        Z: 0.07287923991680145
+        X: 0.009220855310559273
+        Y: 0.14346298575401306
+        Z: -0.02449953742325306
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5350003242492676
+      Pitch: 0.7750000953674316
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: 5.030179977416992
+      Yaw: 4.98018217086792
     Saved: ~
 Window Geometry:
-  Displays:
+  Chessboard:
     collapsed: false
+  Displays:
+    collapsed: true
   Height: 1016
   Help:
     collapsed: false
-  Hide Left Dock: false
+  Hide Left Dock: true
   Hide Right Dock: false
-  Image:
+  Kinect:
+    collapsed: false
+  Kinect Raw:
     collapsed: false
   MotionPlanning:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000200000000000001f30000039efc0200000006fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb000000100044006900730070006c006100790073010000003d000000f6000000c900fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000139000001d30000017d00fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000a005600690065007700730100000312000000c9000000a400fffffffb0000000c00430061006d0065007200610000000339000000a2000000000000000000000001000001670000039efc0200000003fb0000000a0049006d006100670065010000003d000000fc0000002800fffffffb0000000a0049006d006100670065010000013f000001790000002800fffffffb0000000a0049006d00610067006501000002be0000011d0000002800ffffff0000041a0000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000200000000000001d40000039efc0200000009fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb000000100044006900730070006c006100790073000000003d0000039e000000c900fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067000000014e0000028d0000017d00fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000a0056006900650077007300000002c200000119000000a400fffffffb0000000c00430061006d0065007200610000000339000000a20000000000000000fb0000000c00430061006d0065007200610000000339000000a20000000000000000fb0000000c00430061006d006500720061020000000c0000003900000774000003fffb0000000c00430061006d006500720061030000005a00000043000006e50000039d00000001000002130000039efc0200000005fb000000060054004f0046000000003d000000fe0000002800fffffffb00000014004b0069006e0065006300740020005200610077000000003d000000d60000002800fffffffb0000000c004b0069006e006500630074010000003d000001520000002800fffffffb0000000a005400610062006c00650000000145000000d30000002800fffffffb00000014004300680065007300730062006f0061007200640100000195000002460000002800ffffff000005670000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  TOF:
+    collapsed: false
+  Table:
+    collapsed: false
   Views:
     collapsed: false
   Width: 1920
