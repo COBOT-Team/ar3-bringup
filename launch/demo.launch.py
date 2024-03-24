@@ -38,19 +38,19 @@ def generate_launch_description():
     static_tf = generate_static_virtual_joint_tfs_launch(moveit_config)
     robot_state = generate_rsp_launch(moveit_config)
 
-    static_tf_chessboard = Node(
+    static_tf_table = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
-        name="chessboard_transforms_pub",
+        name="table_transforms_pub",
         output="log",
-        arguments=['--x', "0.3556",
+        arguments=['--x', "0",
                    '--y', "0",
                    '--z', "0",
                    '--yaw', '0',
                    '--pitch', '0',
                    '--roll', '0',
-                   '--frame-id', "cobot0_base",
-                   '--child-frame-id', "chessboard_frame"
+                   '--frame-id', "world",
+                   '--child-frame-id', "table_frame"
                    ]
     )
 
@@ -102,7 +102,7 @@ def generate_launch_description():
     return LaunchDescription([
         rviz_config_arg,
 
-        static_tf_chessboard,
+        static_tf_table,
         ros2_control_node,
         spawn_controllers,
         move_group,
