@@ -99,6 +99,21 @@ def generate_launch_description():
         ],
     )
 
+    chess_controller = Node(
+        package='chess_controller',
+        executable='chess_controller',
+        name="chess_controller"
+    )
+
+    chess_player = Node(
+        package='chess_player',
+        executable='chess_player',
+        name="chess_player",
+        parameters=[
+            {'cobot_ns': 'cobot0'}
+        ]
+    )
+
     return LaunchDescription([
         rviz_config_arg,
 
@@ -112,4 +127,6 @@ def generate_launch_description():
         aruco_transforms,
         tof_piece_finder,
         rviz,
+        chess_controller,
+        chess_player,
     ])
