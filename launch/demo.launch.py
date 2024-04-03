@@ -94,6 +94,15 @@ def generate_launch_description():
         name='aruco_transforms'
     )
 
+    cobot_corrector = Node(
+        package='cobot_corrector',
+        executable='cobot_corrector',
+        name='cobot_corrector',
+        parameters=[
+            {'cobot_prefix': 'cobot0'}
+        ]
+    )
+
     tof_piece_finder = Node(
         package='tof_piece_finder',
         executable='tof_piece_finder',
@@ -132,7 +141,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         rviz_config_arg,
-
+        cobot_corrector,
         static_tf_table,
         static_tf_tof,
         ros2_control_node,
