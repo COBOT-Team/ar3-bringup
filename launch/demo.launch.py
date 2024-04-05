@@ -4,9 +4,22 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from moveit_configs_utils import MoveItConfigsBuilder
+from launch_param_builder import ParameterBuilder
 from moveit_configs_utils.launches import generate_static_virtual_joint_tfs_launch, generate_move_group_launch, generate_rsp_launch, generate_spawn_controllers_launch
 from ament_index_python import get_package_share_directory
 import os
+import yaml
+
+
+def load_yaml(package_name, file_path):
+    package_path = get_package_share_directory(package_name)
+    absolute_file_path = os.path.join(package_path, file_path)
+
+    try:
+        with open(absolute_file_path, "r") as file:
+            return yaml.safe_load(file)
+    except EnvironmentError:  # parent of IOError, OSError *and* WindowsError where available
+        return None
 
 
 def generate_launch_description():
@@ -135,8 +148,22 @@ def generate_launch_description():
         executable='chess_player',
         name="chess_player",
         parameters=[
-            {'cobot_ns': 'cobot0'}
+            {'cobot_ns': 'cobot0'},
         ]
+    )
+
+    servo_yaml = load_yaml("ar3_bringup", "config/cobot0_servo.yaml")
+    servo_params = {"moveit_servo": servo_yaml}
+    servo_node = Node(
+        package="moveit_servo",
+        executable="servo_node_main",
+        parameters=[
+            servo_params,
+            moveit_config.robot_description,
+            moveit_config.robot_description_semantic,
+            moveit_config.robot_description_kinematics,
+        ],
+        output="screen",
     )
 
     return LaunchDescription([
@@ -155,4 +182,5 @@ def generate_launch_description():
         rviz,
         chess_controller,
         chess_player,
+        servo_node
     ])
