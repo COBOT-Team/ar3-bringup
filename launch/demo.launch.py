@@ -152,6 +152,12 @@ def generate_launch_description():
         ]
     )
 
+    piece_identifier = Node(
+        package="piece_identifier",
+        executable="piece_identifier",
+        name="piece_identifier",
+    )
+
     servo_yaml = load_yaml("ar3_bringup", "config/cobot0_servo.yaml")
     servo_params = {"moveit_servo": servo_yaml}
     servo_node = Node(
@@ -182,5 +188,6 @@ def generate_launch_description():
         rviz,
         chess_controller,
         chess_player,
-        servo_node
+        servo_node,
+        piece_identifier
     ])
