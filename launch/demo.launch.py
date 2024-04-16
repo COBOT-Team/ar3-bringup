@@ -67,22 +67,6 @@ def generate_launch_description():
                    ]
     )
 
-    static_tf_tof = Node(
-        package="tf2_ros",
-        executable="static_transform_publisher",
-        name="tof_transforms_pub",
-        output="log",
-        arguments=['--x', "0",
-                   '--y', "0",
-                   '--z', "0.09",
-                   '--yaw', '1.570796327',
-                   '--pitch', '0',
-                   '--roll', '0',
-                   '--frame-id', "cobot0_link_gripper",
-                   '--child-frame-id', "tof_optical_frame_id"
-                   ]
-    )
-
     ros2_controllers_path = os.path.join(get_package_share_directory(
         "single_cobot_moveit_config"), "config", "ros2_controllers.yaml")
     ros2_control_node = Node(
@@ -176,7 +160,6 @@ def generate_launch_description():
         rviz_config_arg,
         cobot_corrector,
         static_tf_table,
-        static_tf_tof,
         ros2_control_node,
         spawn_controllers,
         move_group,
