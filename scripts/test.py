@@ -1,4 +1,4 @@
-COM_PORT = '/dev/ttyCobot0'
+COM_PORT = '/dev/ttyCobot1'
 
 import serial
 import struct

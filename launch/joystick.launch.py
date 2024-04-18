@@ -28,7 +28,7 @@ def generate_launch_description():
     # Arguments
     serial_port = LaunchConfiguration("port")
     serial_port_launch_arg = DeclareLaunchArgument(
-        "port", default_value=TextSubstitution(text="/dev/ttyCobot0")
+        "port", default_value=TextSubstitution(text="/dev/ttyCobot1")
     )
     baudrate = LaunchConfiguration("baudrate")
     baudrate_launch_arg = DeclareLaunchArgument(

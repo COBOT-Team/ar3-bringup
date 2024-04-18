@@ -67,6 +67,38 @@ def generate_launch_description():
                    ]
     )
 
+    static_tf_chessboard = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="static_chessboard_transforms_pub",
+        output="log",
+        arguments=['--x', "0",
+                   '--y', "0",
+                   '--z', "0.02877",
+                   '--yaw', '-1.570796327',
+                   '--pitch', '0',
+                   '--roll', '0',
+                   '--frame-id', "table_frame",
+                   '--child-frame-id', "chessboard_frame"
+                   ]
+    )
+
+    static_tf_calib_aruco = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="table_transforms_pub",
+        output="log",
+        arguments=['--x', "-0.4573",
+                   '--y', "-0.1723",
+                   '--z', "0",
+                   '--yaw', '0',
+                   '--pitch', '0',
+                   '--roll', '3.14159',
+                   '--frame-id', "table_frame",
+                   '--child-frame-id', "cobot_calibration_aruco"
+                   ]
+    )
+
     ros2_controllers_path = os.path.join(get_package_share_directory(
         "single_cobot_moveit_config"), "config", "ros2_controllers.yaml")
     ros2_control_node = Node(
@@ -160,6 +192,8 @@ def generate_launch_description():
         rviz_config_arg,
         cobot_corrector,
         static_tf_table,
+        static_tf_calib_aruco,
+        static_tf_chessboard,
         ros2_control_node,
         spawn_controllers,
         move_group,
