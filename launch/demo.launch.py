@@ -188,9 +188,14 @@ def generate_launch_description():
         output="screen",
     )
 
+    clock_node = Node(
+        package="clock_node",
+        executable="clock_node",
+    )
+
     return LaunchDescription([
         rviz_config_arg,
-        cobot_corrector,
+        # cobot_corrector,
         static_tf_table,
         static_tf_calib_aruco,
         static_tf_chessboard,
@@ -206,5 +211,6 @@ def generate_launch_description():
         chess_controller,
         chess_player,
         servo_node,
-        piece_identifier
+        piece_identifier,
+        clock_node
     ])

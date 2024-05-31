@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /MotionPlanning1/Scene Geometry1
+        - /Chessboard1
         - /Pose1
       Splitter Ratio: 0.3862660825252533
     Tree Height: 193
@@ -76,42 +77,74 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_eef_aruco:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_0:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_0_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_1_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_2_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_3_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_4_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_5_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_gripper:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
           cobot0_link_gripper_phantom:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          tof_optical_frame_id:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -170,42 +203,74 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_eef_aruco:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_0:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_0_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_1_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_2_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_3_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_4_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_5:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
+          cobot0_link_5_bias:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
           cobot0_link_gripper:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
           cobot0_link_gripper_phantom:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          tof_optical_frame_id:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -324,7 +389,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /chessboard/image_raw
+        Value: /chessboard/annotated/image_raw
       Value: true
     - Class: rviz_default_plugins/Image
       Enabled: false
@@ -462,25 +527,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.2192083597183228
+      Distance: 2.6952812671661377
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.12640616297721863
-        Y: 0.01245871465653181
-        Z: -0.09978094696998596
+        X: 0.09078913182020187
+        Y: 0.078942209482193
+        Z: -0.04144257679581642
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7647960186004639
+      Pitch: 0.864795982837677
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: 5.182000160217285
+      Yaw: 5.25200080871582
     Saved: ~
 Window Geometry:
   Chessboard:
